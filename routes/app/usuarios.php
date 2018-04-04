@@ -1,6 +1,4 @@
 <?php
-Route::get('/usuarios', 'UsuariosController@index')->name('usuarios.index');
-
 Route::get('/usuarios/form_edit', 'UsuariosController@form_edit')->name('usuarios.form_edit');
 Route::post('/usuarios/update', 'UsuariosController@update')->name('usuarios.update');
 

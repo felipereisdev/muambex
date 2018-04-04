@@ -89,7 +89,7 @@
 
         @if(config('adminlte.layout') != 'top-nav')
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar" style="background-color: #FFD400;">
+        <aside class="main-sidebar" style="background-color: #fff159;">
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">

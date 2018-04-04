@@ -85,7 +85,7 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="4">
-                                            <div class="alert alert-warning" role="alert" style="background-color: #FFD400 !important; border-color: #FFD400;">
+                                            <div class="alert alert-warning" role="alert">
                                                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                                                 Nenhuma muamba encontrada
                                             </div>
