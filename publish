@@ -1,0 +1,9 @@
+
+                                                                  
+  [Symfony\Component\Console\Exception\CommandNotFoundException]  
+  Command "vendor" is not defined.                                
+                                                                  
+  Did you mean this?                                              
+      vendor:publish                                              
+                                                                  
+
