@@ -60,10 +60,10 @@
                                 <th>Status</th>
                                 <th style="width: 10%">Opções</th>
                             </thead>
-                            {{-- @if (isset($usuarios) && count($usuarios) > 0)
+                            @if (isset($muambas) && count($muambas) > 0)
                                 <tbody>
-                                    @foreach ($usuarios as $usuario)
-                                        <tr>
+                                    @foreach ($muambas as $muamba)
+                                        {{-- <tr>
                                             <td>{{ $usuario->name }}</td>
                                             <td>{{ $usuario->email }}</td>
                                             <td>
@@ -78,21 +78,21 @@
                                                     {{ link_to_route('usuarios.alterar_status', '', ['App\User', $usuario->id, 1, 'usuarios.index'], ['class' => 'btn btn-sm btn-success glyphicon glyphicon-thumbs-up', 'title' => 'Ativar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
                                                 @endif
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                     @endforeach
                                 </tbody>
                             @else
                                 <tfoot>
                                     <tr>
                                         <td colspan="4">
-                                            <div class="alert alert-warning" role="alert">
+                                            <div class="alert alert-warning" role="alert" style="background-color: #FFD400 !important; border-color: #FFD400;">
                                                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                                Nenhum usuário encontrado
+                                                Nenhuma muamba encontrada
                                             </div>
                                         </td>
                                     </tr>
                                 </tfoot>
-                            @endif --}}
+                            @endif
                         </table>
                         <div class="pull-right">
                             {{ $muambas->links() }}

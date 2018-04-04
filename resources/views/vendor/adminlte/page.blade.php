@@ -105,7 +105,7 @@
         @endif
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="background-color: #f7f3f0;">
             @if(config('adminlte.layout') == 'top-nav')
             <div class="container">
             @endif
