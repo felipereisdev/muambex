@@ -176,7 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        Cagartner\CorreiosConsulta\ServiceProvider::class,
     ],
 
     /*
@@ -227,7 +227,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Defender' => Artesaos\Defender\Facades\Defender::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
-        'Correios' => eberfreitas\Correios\Correios::class,
+        'Correios' => Cagartner\CorreiosConsulta\Facade::class,
     ],
 
 ];

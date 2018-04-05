@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Muamba;
 use Alert;
+use Correios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -78,8 +79,7 @@ class MuambasController extends Controller
 
     public function rastrear_muambas(Request $request)
     {
-        $correios = new Correios\Correios();
-        $eventos = $correios->rastreamento($request->codigoRastreio);
-        return view('muambas.rastrear_muambas', compact('eventos'));
+        $eventos = Correios::rastrear($request->codigoRastreio);
+        return json_encode($eventos);
     }
 }

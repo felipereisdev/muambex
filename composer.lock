@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "603c79283f7ab4d4b276f6995393857e",
+    "content-hash": "d4ed197e1279a0e59e84444c705872c4",
     "packages": [
         {
             "name": "artesaos/defender",
@@ -77,6 +77,107 @@
             ],
             "description": "Roles & Permissions for Laravel 5",
             "time": "2017-10-13T11:15:05+00:00"
+        },
+        {
+            "name": "cagartner/correios-consulta",
+            "version": "0.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cagartner/correios-consulta.git",
+                "reference": "4a0a02538507e5b924fbfd9aca3d083e7315f71e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cagartner/correios-consulta/zipball/4a0a02538507e5b924fbfd9aca3d083e7315f71e",
+                "reference": "4a0a02538507e5b924fbfd9aca3d083e7315f71e",
+                "shasum": ""
+            },
+            "require": {
+                "cagartner/phpquery": "0.9.8",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Cagartner\\CorreiosConsulta\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Correios": "Cagartner\\CorreiosConsulta\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Cagartner\\CorreiosConsulta": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carlos A. Gartner",
+                    "email": "contato@carlosgartner.com.br"
+                }
+            ],
+            "description": "Package para pesquisa de serviços de busca por cep, calculo de frete e etc, diretamente nos serviços dos Correios.",
+            "keywords": [
+                "brazil",
+                "cep",
+                "frete",
+                "laravel"
+            ],
+            "time": "2017-10-03T23:46:42+00:00"
+        },
+        {
+            "name": "cagartner/phpquery",
+            "version": "0.9.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cagartner/phpquery.git",
+                "reference": "b05a099ba9db1fb158056672b8d9e46b5245e627"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cagartner/phpquery/zipball/b05a099ba9db1fb158056672b8d9e46b5245e627",
+                "reference": "b05a099ba9db1fb158056672b8d9e46b5245e627",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "sabberworm/php-css-parser": "5.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpQuery\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobiasz Cudnik",
+                    "email": "tobiasz.cudnik@gmail.com",
+                    "homepage": "https://github.com/TobiaszCudnik",
+                    "role": "Developer"
+                },
+                {
+                    "name": "didier Belot",
+                    "role": "Packager"
+                },
+                {
+                    "name": "Greg Payne",
+                    "role": "Packager"
+                }
+            ],
+            "description": "PHP5.3+ namespaced version of phpQuery with enhanced CSS support",
+            "homepage": "http://code.google.com/p/phpquery/",
+            "time": "2014-07-18T16:15:43+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -231,48 +332,6 @@
                 "parser"
             ],
             "time": "2014-09-09T13:34:57+00:00"
-        },
-        {
-            "name": "eberfreitas/correios",
-            "version": "0.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/eberfreitas/correios.git",
-                "reference": "e04b289b9e14b44c72dc219464764fe8ae6121a9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/eberfreitas/correios/zipball/e04b289b9e14b44c72dc219464764fe8ae6121a9",
-                "reference": "e04b289b9e14b44c72dc219464764fe8ae6121a9",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "5.*",
-                "tburry/pquery": "1.*"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*",
-                "squizlabs/php_codesniffer": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Correios\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Éber Freitas Dias",
-                    "email": "eber.freitas@gmail.com"
-                }
-            ],
-            "description": "Um pacote para interagir com serviços dos Correios",
-            "homepage": "https://github.com/eberfreitas/correios",
-            "time": "2015-05-08T02:49:00+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -433,160 +492,6 @@
                 "trusted proxy"
             ],
             "time": "2017-06-15T17:19:42+00:00"
-        },
-        {
-            "name": "guzzlehttp/guzzle",
-            "version": "5.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "f9acb4761844317e626a32259205bec1f1bc60d2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f9acb4761844317e626a32259205bec1f1bc60d2",
-                "reference": "f9acb4761844317e626a32259205bec1f1bc60d2",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/ringphp": "^1.1",
-                "php": ">=5.4.0",
-                "react/promise": "^2.2"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "^4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "client",
-                "curl",
-                "framework",
-                "http",
-                "http client",
-                "rest",
-                "web service"
-            ],
-            "time": "2018-01-15T07:18:01+00:00"
-        },
-        {
-            "name": "guzzlehttp/ringphp",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/RingPHP.git",
-                "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
-                "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/streams": "~3.0",
-                "php": ">=5.4.0",
-                "react/promise": "~2.0"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "ext-curl": "Guzzle will use specific adapters if cURL is present"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Ring\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
-            "time": "2015-05-20T03:37:09+00:00"
-        },
-        {
-            "name": "guzzlehttp/streams",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/streams.git",
-                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/streams/zipball/47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
-                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Stream\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Provides a simple abstraction over streams of data",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "Guzzle",
-                "stream"
-            ],
-            "time": "2014-10-12T19:18:40+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1648,33 +1553,27 @@
             "time": "2018-01-20T00:28:24+00:00"
         },
         {
-            "name": "react/promise",
-            "version": "v2.5.1",
+            "name": "sabberworm/php-css-parser",
+            "version": "5.1.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/reactphp/promise.git",
-                "reference": "62785ae604c8d69725d693eb370e1d67e94c4053"
+                "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
+                "reference": "4c4ab985e372113dbfd0a8192fbd8629bface9bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise/zipball/62785ae604c8d69725d693eb370e1d67e94c4053",
-                "reference": "62785ae604c8d69725d693eb370e1d67e94c4053",
+                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/4c4ab985e372113dbfd0a8192fbd8629bface9bb",
+                "reference": "4c4ab985e372113dbfd0a8192fbd8629bface9bb",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8"
+                "php": ">=5.3.2"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "React\\Promise\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
+                "psr-0": {
+                    "Sabberworm\\CSS": "lib/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1682,16 +1581,17 @@
             ],
             "authors": [
                 {
-                    "name": "Jan Sorgalla",
-                    "email": "jsorgalla@gmail.com"
+                    "name": "Raphael Schweikert"
                 }
             ],
-            "description": "A lightweight implementation of CommonJS Promises/A for PHP",
+            "description": "Parser for CSS Files written in PHP",
+            "homepage": "http://www.sabberworm.com/blog/2010/6/10/php-css-parser",
             "keywords": [
-                "promise",
-                "promises"
+                "css",
+                "parser",
+                "stylesheet"
             ],
-            "time": "2017-03-25T12:08:31+00:00"
+            "time": "2014-04-24T18:00:51+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2561,58 +2461,6 @@
                 "dump"
             ],
             "time": "2018-04-03T05:22:50+00:00"
-        },
-        {
-            "name": "tburry/pquery",
-            "version": "v1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tburry/pquery.git",
-                "reference": "872339ffd38d261c4417ea1855428b1b4ff9abf1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tburry/pquery/zipball/872339ffd38d261c4417ea1855428b1b4ff9abf1",
-                "reference": "872339ffd38d261c4417ea1855428b1b4ff9abf1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "htmlawed/htmlawed": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "IQuery.php",
-                    "gan_formatter.php",
-                    "gan_node_html.php",
-                    "gan_parser_html.php",
-                    "gan_selector_html.php",
-                    "gan_tokenizer.php",
-                    "gan_xml2array.php",
-                    "pQuery.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1"
-            ],
-            "authors": [
-                {
-                    "name": "Todd Burry",
-                    "email": "todd@vanillaforums.com",
-                    "role": "developer"
-                }
-            ],
-            "description": "A jQuery like html dom parser written in php.",
-            "keywords": [
-                "dom",
-                "ganon",
-                "php"
-            ],
-            "time": "2016-01-14T20:55:00+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

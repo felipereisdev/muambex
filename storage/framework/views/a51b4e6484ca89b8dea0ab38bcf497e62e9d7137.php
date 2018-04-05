@@ -1,8 +1,6 @@
-@extends('adminlte::page')
+<?php $__env->startSection('title', 'Listagem de Muambas'); ?>
 
-@section('title', 'Listagem de Muambas')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -11,7 +9,8 @@
                         <h3 class="box-title">Listagem de Muambas</h3>
     
                         <div class="box-tools">
-                            {{ link_to_route('muambas.form_add', 'Cadastrar', null, ['class' => 'btn btn-primary']) }}
+                            <?php echo e(link_to_route('muambas.form_add', 'Cadastrar', null, ['class' => 'btn btn-primary'])); ?>
+
                         </div>
                     </div>
                     <hr>
@@ -25,25 +24,30 @@
                         </div>
                         <div id="filtrosCollapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="filtros">
                             <div class="panel-body">
-                                <form id="form-busca" action="{{ route('muambas.index') }}" method="POST">
+                                <form id="form-busca" action="<?php echo e(route('muambas.index')); ?>" method="POST">
                                     <div class="row">
                                         <div class="form-group col-md-3">
-                                            {{ Form::label('Nome:', null, ['class' => 'control-label']) }}
-                                            {{ Form::text('nome', (isset($request->nome) && !empty($request->nome) ? $request->nome : ''), ['class' => 'form-control', 'id' => 'nome']) }}
+                                            <?php echo e(Form::label('Nome:', null, ['class' => 'control-label'])); ?>
+
+                                            <?php echo e(Form::text('nome', (isset($request->nome) && !empty($request->nome) ? $request->nome : ''), ['class' => 'form-control', 'id' => 'nome'])); ?>
+
                                         </div>
                                         
                                         <div class="form-group col-md-3">
-                                            {{ Form::label('Código Rastreio:', null, ['class' => 'control-label']) }}
-                                            {{ Form::text('codigo_rastreio', (isset($request->codigo_rastreio) && !empty($request->codigo_rastreio) ? $request->codigo_rastreio : ''), ['class' => 'form-control', 'id' => 'codigo_rastreio']) }}
+                                            <?php echo e(Form::label('Código Rastreio:', null, ['class' => 'control-label'])); ?>
+
+                                            <?php echo e(Form::text('codigo_rastreio', (isset($request->codigo_rastreio) && !empty($request->codigo_rastreio) ? $request->codigo_rastreio : ''), ['class' => 'form-control', 'id' => 'codigo_rastreio'])); ?>
+
                                         </div>
                                         <div class="form-group col-md-2">
-                                            {{-- {{ Form::label('Status:', null, ['class' => 'control-label']) }}
-                                            {{ Form::select('fl_ativo', [1 => 'Ativo', 0 => 'Inativo'], null, ['placeholder' => 'Selecione', 'class' => 'form-control', 'value' => (isset($request->fl_ativo) && !empty($request->fl_ativo) ? $request->fl_ativo : '')]) }} --}}
+                                            
                                         </div>
                                     </div>
                                     <div class="btn-group">
-                                        {{ Form::token() }}
-                                        {{ Form::submit('Buscar', ['class' => 'btn btn-default', 'id' => 'btnBuscar']) }}
+                                        <?php echo e(Form::token()); ?>
+
+                                        <?php echo e(Form::submit('Buscar', ['class' => 'btn btn-default', 'id' => 'btnBuscar'])); ?>
+
                                     </div>
                                 </form>
                                 <br />
@@ -59,25 +63,27 @@
                                 <th>Cód Rastreio</th>
                                 <th style="width: 12%">Opções</th>
                             </thead>
-                            @if (isset($muambas) && count($muambas) > 0)
+                            <?php if(isset($muambas) && count($muambas) > 0): ?>
                                 <tbody>
-                                    @foreach ($muambas as $muamba)
+                                    <?php $__currentLoopData = $muambas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $muamba): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td>{{ $muamba->nome }}</td>
-                                            <td>{{ $muamba->codigo_rastreio }}</td>
+                                            <td><?php echo e($muamba->nome); ?></td>
+                                            <td><?php echo e($muamba->codigo_rastreio); ?></td>
                                             <td>
-                                                <button class="btn btn-sm btn-info rastrear-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Rastrear Muamba" data-nome="{{ $muamba->nome }}" data-id="{{ $muamba->id }}" data-codigo-rastreio="{{ $muamba->codigo_rastreio }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-refresh"></i></button>
+                                                <button class="btn btn-sm btn-info rastrear-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Rastrear Muamba" data-nome="<?php echo e($muamba->nome); ?>" data-id="<?php echo e($muamba->id); ?>" data-codigo-rastreio="<?php echo e($muamba->codigo_rastreio); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-refresh"></i></button>
 
-                                                {{ link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
+                                                <?php echo e(link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top'])); ?>
 
-                                                @if (!$muamba->fl_recebido)
-                                                    {{ link_to_route('muambas.alterar_status', '', ['App\Muamba', $muamba->id, 1, 'muambas.index'], ['class' => 'btn btn-sm btn-success glyphicon glyphicon-thumbs-up', 'title' => 'Confirmar Recebimento', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
-                                                @endif
+
+                                                <?php if(!$muamba->fl_recebido): ?>
+                                                    <?php echo e(link_to_route('muambas.alterar_status', '', ['App\Muamba', $muamba->id, 1, 'muambas.index'], ['class' => 'btn btn-sm btn-success glyphicon glyphicon-thumbs-up', 'title' => 'Confirmar Recebimento', 'data-toggle' => 'tooltip', 'data-placement' => 'top'])); ?>
+
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
-                            @else
+                            <?php else: ?>
                                 <tfoot>
                                     <tr>
                                         <td colspan="4">
@@ -88,10 +94,11 @@
                                         </td>
                                     </tr>
                                 </tfoot>
-                            @endif
+                            <?php endif; ?>
                         </table>
                         <div class="pull-right">
-                            {{ $muambas->links() }}
+                            <?php echo e($muambas->links()); ?>
+
                         </div>
                     </div>
                 </div>
@@ -118,8 +125,9 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
-    <script type="text/javascript" src="{{ URL::asset('js/muambas/index.js') }}"></script>
-@stop
+<?php $__env->startSection('js'); ?>
+    <script type="text/javascript" src="<?php echo e(URL::asset('js/muambas/index.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('adminlte::page', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

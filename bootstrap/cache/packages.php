@@ -21,6 +21,17 @@
       'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
     ),
   ),
+  'cagartner/correios-consulta' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Cagartner\\CorreiosConsulta\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Correios' => 'Cagartner\\CorreiosConsulta\\Facade',
+    ),
+  ),
   'fideloper/proxy' => 
   array (
     'providers' => 
