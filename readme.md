@@ -2,10 +2,14 @@
 
 Projeto simples em laravel para rastreio de pacotes dos correios, busca de cep e mais...
 
+## Screenshot
+
+![muambex](https://user-images.githubusercontent.com/7799406/38389120-cf72840a-38f3-11e8-8ff5-a8c97007273a.JPG)
+
 ## Instruções
 
 ```
-1 - git clone https://github.com/felipe-alves-reis/maumbex.git
+1 - git clone https://github.com/felipe-alves-reis/muambex.git
 
 2 - cd muambex
 
