@@ -4,7 +4,7 @@ Projeto simples em laravel para rastreio de pacotes dos correios, busca de cep e
 
 ## Screenshot
 
-![muambex](https://user-images.githubusercontent.com/7799406/38388933-25802d26-38f3-11e8-84f9-335d8fd31a0b.JPG)
+![muambex](https://user-images.githubusercontent.com/7799406/38389120-cf72840a-38f3-11e8-8ff5-a8c97007273a.JPG)
 
 ## Instruções
 
