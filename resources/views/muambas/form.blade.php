@@ -7,30 +7,26 @@
         <div class="box-header with-border">
             <h3 class="box-title">{{ $content_header }}</h3>
         </div>
-        {{-- {{ Form::open(['route' => (isset($usuario->id) && !empty($usuario->id) ? 'usuarios.update' : 'usuarios.create'), 'id' => 'form_usuario']) }}
+        {{ Form::open(['route' => (isset($muamba->id) && !empty($muamba->id) ? 'muambas.update' : 'muambas.create'), 'id' => 'form_muambas']) }}
             <div class="box-body">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     {{ Form::label('Nome:', null, ['class' => 'control-label']) }}
-                    {{ Form::text('name', (isset($usuario->name) && !empty($usuario->name) ? $usuario->name : ''), ['class' => 'form-control', 'id' => 'name']) }}
+                    {{ Form::text('nome', (isset($muamba->nome) && !empty($muamba->nome) ? $muamba->nome : ''), ['class' => 'form-control', 'id' => 'nome']) }}
                 </div>
 
-                <div class="form-group col-md-6">
-                    {{ Form::label('Email:', null, ['class' => 'control-label']) }}
-                    {{ Form::text('email', (isset($usuario->email) && !empty($usuario->email) ? $usuario->email : ''), ['class' => 'form-control', 'id' => 'email']) }}
-                </div>
-
-                <div class="form-group col-md-6">
-                    {{ Form::label('Senha:', null, ['class' => 'control-label']) }}
-                    {{ Form::password('password', ['class' => 'form-control']) }}
+                <div class="form-group col-md-3">
+                    {{ Form::label('Código Rastreio:', null, ['class' => 'control-label']) }}
+                    {{ Form::text('codigo_rastreio', (isset($muamba->codigo_rastreio) && !empty($muamba->codigo_rastreio) ? $muamba->codigo_rastreio : ''), ['class' => 'form-control', 'id' => 'codigo_rastreio']) }}
                 </div>
             </div>
 
             <div class="box-footer">
-                <input type="hidden" name="id" value="{{ (isset($usuario->id) && !empty($usuario->id) ? $usuario->id : '') }}" />
+                <input type="hidden" name="id" value="{{ (isset($muamba->id) && !empty($muamba->id) ? $muamba->id : '') }}" />
+                <input type="hidden" name="user_id" value="{{ Auth::id() }}" />
                 {{ Form::submit('Salvar', ['class' => 'btn btn-primary']) }}
-                {{ link_to_route('usuarios.index', 'Cancelar', null, ['class' => 'btn btn-warning']) }}
+                {{ link_to_route('muambas.index', 'Cancelar', null, ['class' => 'btn btn-warning']) }}
             </div>
-        {{ Form::close() }} --}}
+        {{ Form::close() }}
     </div>
 @endsection
 

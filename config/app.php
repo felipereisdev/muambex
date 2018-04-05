@@ -227,6 +227,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Defender' => Artesaos\Defender\Facades\Defender::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Correios' => eberfreitas\Correios\Correios::class,
     ],
 
 ];

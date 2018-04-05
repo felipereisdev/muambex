@@ -30,16 +30,16 @@ class Controller extends BaseController
     public function ajax_verifica_duplicidade(Request $request)
     {
         $conditions = [];
-        if (isset($request->id) && !empty($request->id)) {
+        if (!empty($request->id)) {
             $conditions[] = ['id', '<>', $request->id];
         }
 
         $conditions[] = [$request->campo, '=', trim($request->valor)];
 
         $model = $request->model;
-        $v = $model::where($conditions)->first();
+        $v = $model::where($conditions)->count();
 
-        if (count($v) > 0) {
+        if ($v > 0) {
             return "true";
         } else {
             return "false";

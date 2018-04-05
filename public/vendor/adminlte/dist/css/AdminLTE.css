@@ -2266,13 +2266,13 @@ a:focus {
   background-color: #d73925;
 }
 .btn-warning {
-  background-color: #f39c12;
-  border-color: #e08e0b;
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
 }
 .btn-warning:hover,
 .btn-warning:active,
 .btn-warning.hover {
-  background-color: #e08e0b;
+  background-color: #f0ad4e;
 }
 .btn-outline {
   border: 1px solid #fff;

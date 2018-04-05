@@ -27,14 +27,14 @@
                             <div class="panel-body">
                                 <form id="form-busca" action="{{ route('muambas.index') }}" method="POST">
                                     <div class="row">
-                                        <div class="form-group col-md-4">
-                                            {{-- {{ Form::label('Nome:', null, ['class' => 'control-label']) }}
-                                            {{ Form::text('name', (isset($request->name) && !empty($request->name) ? $request->name : ''), ['class' => 'form-control', 'id' => 'name']) }} --}}
+                                        <div class="form-group col-md-3">
+                                            {{ Form::label('Nome:', null, ['class' => 'control-label']) }}
+                                            {{ Form::text('nome', (isset($request->nome) && !empty($request->nome) ? $request->nome : ''), ['class' => 'form-control', 'id' => 'nome']) }}
                                         </div>
                                         
                                         <div class="form-group col-md-3">
-                                            {{-- {{ Form::label('Email:', null, ['class' => 'control-label']) }}
-                                            {{ Form::text('email', (isset($request->email) && !empty($request->email) ? $request->email : ''), ['class' => 'form-control', 'id' => 'email']) }} --}}
+                                            {{ Form::label('Código Rastreio:', null, ['class' => 'control-label']) }}
+                                            {{ Form::text('codigo_rastreio', (isset($request->codigo_rastreio) && !empty($request->codigo_rastreio) ? $request->codigo_rastreio : ''), ['class' => 'form-control', 'id' => 'codigo_rastreio']) }}
                                         </div>
                                         <div class="form-group col-md-2">
                                             {{-- {{ Form::label('Status:', null, ['class' => 'control-label']) }}
@@ -56,29 +56,25 @@
                         <table class="table table-striped">
                             <thead>
                                 <th>Nome</th>
-                                <th>Email</th>
-                                <th>Status</th>
+                                <th>Cód Rastreio</th>
                                 <th style="width: 10%">Opções</th>
                             </thead>
                             @if (isset($muambas) && count($muambas) > 0)
                                 <tbody>
                                     @foreach ($muambas as $muamba)
-                                        {{-- <tr>
-                                            <td>{{ $usuario->name }}</td>
-                                            <td>{{ $usuario->email }}</td>
+                                        <tr>
+                                            <td>{{ $muamba->nome }}</td>
+                                            <td>{{ $muamba->codigo_rastreio }}</td>
                                             <td>
-                                                <span class="badge {{ ($usuario->fl_ativo) ? 'bg-green' : 'bg-red' }}">{{ ($usuario->fl_ativo) ? 'ATIVO' : 'INATIVO' }}</span>
-                                            </td>
-                                            <td>
-                                                {{ link_to_route('usuarios.form_edit', '', [$usuario->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
+                                                <button class="btn btn-sm btn-info rastrear-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Rastrear Muamba" data-id="{{ $muamba->id }}" data-codigo-rastreio="{{ $muamba->codigo_rastreio }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-refresh"></i></button>
 
-                                                @if ($usuario->fl_ativo)
-                                                    {{ link_to_route('usuarios.alterar_status', '', ['App\User', $usuario->id, 0, 'usuarios.index'], ['class' => 'btn btn-sm btn-danger glyphicon glyphicon-thumbs-down', 'title' => 'Inativar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
-                                                @else
-                                                    {{ link_to_route('usuarios.alterar_status', '', ['App\User', $usuario->id, 1, 'usuarios.index'], ['class' => 'btn btn-sm btn-success glyphicon glyphicon-thumbs-up', 'title' => 'Ativar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
+                                                {{ link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
+
+                                                @if (!$muamba->fl_recebido)
+                                                    {{ link_to_route('muambas.alterar_status', '', ['App\Muamba', $muamba->id, 1, 'muambas.index'], ['class' => 'btn btn-sm btn-success glyphicon glyphicon-thumbs-up', 'title' => 'Confirmar Recebimento', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
                                                 @endif
                                             </td>
-                                        </tr> --}}
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             @else
