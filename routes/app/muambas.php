@@ -2,7 +2,7 @@
     Route::get('/muambas', 'MuambasController@index')->name('muambas.index');
     Route::post('/muambas', 'MuambasController@index')->name('muambas.index');
     
-    Route::get('/muambas/alterar_status/{model}/{id}/{valor}/{rota}', 'MuambasController@alterar_status')->name('muambas.alterar_status');
+    Route::get('/muambas/confirmar_recebimento/{id}', 'MuambasController@confirmar_recebimento')->name('muambas.confirmar_recebimento');
     
     Route::get('/muambas/form_add', 'MuambasController@form_add')->name('muambas.form_add');
     Route::post('/muambas/create', 'MuambasController@create')->name('muambas.create');

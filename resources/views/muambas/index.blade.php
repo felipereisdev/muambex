@@ -71,7 +71,7 @@
                                                 {{ link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
 
                                                 @if (!$muamba->fl_recebido)
-                                                    {{ link_to_route('muambas.alterar_status', '', ['App\Muamba', $muamba->id, 1, 'muambas.index'], ['class' => 'btn btn-sm btn-success glyphicon glyphicon-thumbs-up', 'title' => 'Confirmar Recebimento', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
+                                                    {{ link_to_route('muambas.confirmar_recebimento', '', [$muamba->id], ['class' => 'btn btn-sm btn-success glyphicon glyphicon-thumbs-up', 'title' => 'Confirmar Recebimento', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
                                                 @endif
                                             </td>
                                         </tr>

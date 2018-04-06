@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Muamba;
+use App\MuambaInfo;
 use Alert;
 use Correios;
 use Illuminate\Http\Request;
@@ -81,5 +82,35 @@ class MuambasController extends Controller
     {
         $eventos = Correios::rastrear($request->codigoRastreio);
         return json_encode($eventos);
+    }
+    
+    public function confirmar_recebimento(int $id)
+    {
+        $muamba = Muamba::where('id', $id)->first();
+        $muamba->fl_recebido = 1;
+        
+        $eventos = Correios::rastrear($muamba->codigo_rastreio);
+
+        $arrayMuambaInfo = array();
+        foreach($eventos as $key => $value) {
+            $muambaInfo = new MuambaInfo();
+            $muambaInfo->dh_evento = $value['data'];
+            $muambaInfo->ds_local = $value['local'];
+            $muambaInfo->ds_status = $value['status'];
+            
+            if (!empty($value['encaminhado'])) {
+                $muambaInfo->ds_encaminhado = $value['encaminhado'];   
+            }
+            
+            $arrayMuambaInfo[] = $muambaInfo;
+        }
+
+        if ($muamba->muamba_info()->save($arrayMuambaInfo)) {
+            Alert::success('Recebimento da muamba confirmado com sucesso', 'Uhuuuul!');
+        } else {
+            Alert::error('Erro ao confirmar recebimento da muamba', 'Ooooops!');
+        }
+
+        return redirect()->route('muambas.index');
     }
 }

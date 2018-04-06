@@ -13,20 +13,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected function alterar_status(string $model, int $id, int $status, string $rota)
-    {
-        $v = $model::where('id', $id)->first();
-        $v->fl_recebido = $status;
-
-        if ($v->save()) {
-            Alert::success('Recebimento da muamba confirmado com sucesso', 'Uhuuuul!');
-        } else {
-            Alert::error('Erro ao confirmar recebimento da muamba', 'Ooooops!');
-        }
-
-        return redirect()->route($rota);
-    }
-
     public function ajax_verifica_duplicidade(Request $request)
     {
         $conditions = [];
