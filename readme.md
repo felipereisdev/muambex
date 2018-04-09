@@ -36,11 +36,12 @@ Enjoy
 
 ## Construído com:
 
-* [Laravel](https://laravel.com/docs/5.6) - Web framework usado
+* [Laravel](https://laravel.com/docs/5.6) - Web framework
 * [Composer](https://getcomposer.org/) - Gerenciamento de Dependência
 * [MySQL](https://www.mysql.com/) - Banco de Dados
 * [Jquery](https://jquery.com/) - Manipulação de Front
 * [jeroennoten/Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE) - Template
+* [jqueryvalidation](https://jqueryvalidation.org/) - Validação do form
 
 ## Autor
 

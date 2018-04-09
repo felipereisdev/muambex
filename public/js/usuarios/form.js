@@ -62,4 +62,19 @@ $(function() {
             }
         });
     });
+    
+    $("#btn-salvar").click(function () {
+        swal({
+            title: "Confirma alteração?",
+            // text: "Uma vez confirmado, você não poderá rastrea - lo novamente, somente visualizar o histórico!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $("#form_usuario").submit();
+            }
+        });
+    });
 });

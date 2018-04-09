@@ -39,6 +39,6 @@ class UsuariosController extends Controller
             Alert::error('Erro ao alterar usuário', 'Ooooops!');
         }
 
-        return redirect()->route('usuarios.form');
+        return redirect()->route('muambas.index');
     }
 }
