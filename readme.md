@@ -1,4 +1,4 @@
-# Muambex
+# Muambex Versão 1.0.0
 
 Projeto simples em laravel para rastreio de pacotes dos correios, busca de cep e mais...
 
@@ -17,11 +17,18 @@ Projeto simples em laravel para rastreio de pacotes dos correios, busca de cep e
 
 4 - Criar e edit arquivo .env com as informações do seu banco de dados
 
+5 - php artisan key:generate
+
+6 - php artisan migrate
+
+Enjoy
+
 ```
 
 ### Pré-requisitos
 
 ```
+* Laravel
 * MySQL
 * Composer
 * Git
@@ -31,6 +38,9 @@ Projeto simples em laravel para rastreio de pacotes dos correios, busca de cep e
 
 * [Laravel](https://laravel.com/docs/5.6) - Web framework usado
 * [Composer](https://getcomposer.org/) - Gerenciamento de Dependência
+* [MySQL](https://www.mysql.com/) - Banco de Dados
+* [Jquery](https://jquery.com/) - Manipulação de Front
+* [jeroennoten/Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE) - Template
 
 ## Autor
 
@@ -38,4 +48,4 @@ Projeto simples em laravel para rastreio de pacotes dos correios, busca de cep e
 
 ## Licença
 
-Este projeto está licenciado sob a MIT License - veja o [LICENSE.md](LICENSE.md) arquivo para detalhes
+Este projeto está licenciado a Copyright 2018 Felipe Alves Reis
