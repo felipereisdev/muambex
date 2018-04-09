@@ -6,6 +6,7 @@ use App\Muamba;
 use App\MuambaInfo;
 use Alert;
 use Correios;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,9 +17,17 @@ class MuambasController extends Controller
         $this->middleware('auth');
     }
     
-    public function index()
+    public function index(Request $request)
     {
         $conditions = array();
+        
+        if (!empty($request->nome)) {
+            $conditions[] = ['nome', 'LIKE', "%" . trim($request->nome) . "%"];
+        }
+        
+        if (!empty($request->codigo_rastreio)) {
+            $conditions['codigo_rastreio'] = trim($request->codigo_rastreio);
+        }
 
         $conditions['user_id'] = Auth::id();
 
@@ -51,32 +60,28 @@ class MuambasController extends Controller
     }
 
 
-    // public function form_edit($id)
-    // {
-    //     $content_header = "Alterar Muamba";
-    //     $usuario = User::where('id', $id)->first();
-    //     $controller = "muambas";
-    //     return view('muambas.form', compact('muambas', 'content_header', 'controller'));
-    // }
+    public function form_edit($id)
+    {
+        $content_header = "Alterar Muamba";
+        $muamba = Muamba::where('id', $id)->first();
+        $controller = "muambas";
+        return view('muambas.form', compact('muamba', 'content_header', 'controller'));
+    }
 
-    // public function update(Request $request)
-    // {
-    //     $usuario = User::where('id', $request->id)->first();
-    //     $usuario->name = trim($request->name);
-    //     $usuario->email = trim($request->email);
+    public function update(Request $request)
+    {
+        $muamba = Muamba::where('id', $request->id)->first();
+        $muamba->nome = trim($request->nome);
+        $muamba->codigo_rastreio = trim($request->codigo_rastreio);
 
-    //     if (isset($request->password) && !empty($request->password)) {
-    //         $usuario->password = Hash::make($request->password);
-    //     }
+        if ($muamba->save()) {
+            Alert::success('Muamba alterada com sucesso', 'Uhuuuul!');
+        } else {
+            Alert::error('Erro ao alterar a muamba', 'Ooooops!');
+        }
 
-    //     if ($usuario->save()) {
-    //         Alert::success('Usuário alterado com sucesso', 'Uhuuuul!');
-    //     } else {
-    //         Alert::error('Erro ao alterar usuário', 'Ooooops!');
-    //     }
-
-    //     return redirect()->route('usuarios.index');
-    // }
+        return redirect()->route('muambas.index');
+    }
 
     public function rastrear_muambas(Request $request)
     {
@@ -84,33 +89,53 @@ class MuambasController extends Controller
         return json_encode($eventos);
     }
     
-    public function confirmar_recebimento(int $id)
+    public function historico_muambas(Request $request)
     {
-        $muamba = Muamba::where('id', $id)->first();
-        $muamba->fl_recebido = 1;
+        $historico = MuambaInfo::where('muambas_id', $request->id)->get();
+        return json_encode($historico);
+    }
+    
+    public function confirmar_recebimento(Request $request)
+    {
+        DB::beginTransaction();
         
-        $eventos = Correios::rastrear($muamba->codigo_rastreio);
-
-        $arrayMuambaInfo = array();
-        foreach($eventos as $key => $value) {
-            $muambaInfo = new MuambaInfo();
-            $muambaInfo->dh_evento = $value['data'];
-            $muambaInfo->ds_local = $value['local'];
-            $muambaInfo->ds_status = $value['status'];
+        try {
+            $muamba = Muamba::where('id', $request->id)->first();
+            $muamba->fl_recebido = 1;
             
-            if (!empty($value['encaminhado'])) {
-                $muambaInfo->ds_encaminhado = $value['encaminhado'];   
+            if (!$muamba->save()) {
+                throw new \Exception();
             }
             
-            $arrayMuambaInfo[] = $muambaInfo;
+            $eventos = Correios::rastrear($muamba->codigo_rastreio);
+    
+            $arrayMuambaInfo = array();
+            foreach($eventos as $key => $value) {
+                $muambaInfo = new MuambaInfo();
+                
+                // $data = new \DateTime($value['data']);
+                // $muambaInfo->data = $data->format("Y-m-d H:i:s");
+                $muambaInfo->data = $value['data'];
+                
+                $muambaInfo->local = $value['local'];
+                $muambaInfo->status = $value['status'];
+                
+                if (!empty($value['encaminhado'])) {
+                    $muambaInfo->encaminhado = $value['encaminhado'];   
+                }
+                
+                $arrayMuambaInfo[] = $muambaInfo;
+            }
+    
+            if (!$muamba->muamba_info()->saveMany($arrayMuambaInfo)) {
+                throw new \Exception();
+            }
+            
+            DB::commit();
+            return json_encode(true);
+        } catch(\Exception $e) {
+            DB::rollBack();
+            return json_encode(false);
         }
-
-        if ($muamba->muamba_info()->save($arrayMuambaInfo)) {
-            Alert::success('Recebimento da muamba confirmado com sucesso', 'Uhuuuul!');
-        } else {
-            Alert::error('Erro ao confirmar recebimento da muamba', 'Ooooops!');
-        }
-
-        return redirect()->route('muambas.index');
     }
 }

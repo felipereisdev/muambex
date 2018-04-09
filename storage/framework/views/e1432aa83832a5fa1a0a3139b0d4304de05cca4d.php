@@ -26,7 +26,7 @@
             <div class="box-footer">
                 <input type="hidden" name="id" value="<?php echo e((isset($muamba->id) && !empty($muamba->id) ? $muamba->id : '')); ?>" />
                 <input type="hidden" name="user_id" value="<?php echo e(Auth::id()); ?>" />
-                <?php echo e(Form::submit('Salvar', ['class' => 'btn btn-primary'])); ?>
+                <?php echo e(Form::button('Salvar', ['class' => 'btn btn-primary', 'id' => 'btn-salvar', 'type' => 'button'])); ?>
 
                 <?php echo e(link_to_route('muambas.index', 'Cancelar', null, ['class' => 'btn btn-warning'])); ?>
 

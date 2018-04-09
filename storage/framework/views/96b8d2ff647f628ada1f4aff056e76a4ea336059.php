@@ -56,16 +56,14 @@
                 </div>
             </form>
             <div class="auth-links">
-                <!--<a href="<?php echo e(url(config('adminlte.password_reset_url', 'password/reset'))); ?>"
-                   class="text-center"
-                ><?php echo e(trans('adminlte::adminlte.i_forgot_my_password')); ?></a>
+                <a href="<?php echo e(url(config('adminlte.password_reset_url', 'password/reset'))); ?>"
+                   class="text-center"><?php echo e(trans('adminlte::adminlte.i_forgot_my_password')); ?></a>
                 <br>
                 <?php if(config('adminlte.register_url', 'register')): ?>
                     <a href="<?php echo e(url(config('adminlte.register_url', 'register'))); ?>"
                        class="text-center"
                     ><?php echo e(trans('adminlte::adminlte.register_a_new_membership')); ?></a>
                 <?php endif; ?>
-                 -->
             </div>
         </div>
         <!-- /.login-box-body -->

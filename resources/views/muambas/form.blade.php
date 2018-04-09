@@ -23,7 +23,7 @@
             <div class="box-footer">
                 <input type="hidden" name="id" value="{{ (isset($muamba->id) && !empty($muamba->id) ? $muamba->id : '') }}" />
                 <input type="hidden" name="user_id" value="{{ Auth::id() }}" />
-                {{ Form::submit('Salvar', ['class' => 'btn btn-primary']) }}
+                {{ Form::button('Salvar', ['class' => 'btn btn-primary', 'id' => 'btn-salvar', 'type' => 'button']) }}
                 {{ link_to_route('muambas.index', 'Cancelar', null, ['class' => 'btn btn-warning']) }}
             </div>
         {{ Form::close() }}

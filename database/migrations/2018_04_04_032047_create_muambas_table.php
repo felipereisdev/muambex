@@ -15,7 +15,7 @@ class CreateMuambasTable extends Migration
         Schema::create('muambas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 90);
-            $table->string('codigo_rastreio', 30);
+            $table->string('codigo_rastreio', 30)->unique();
             $table->tinyInteger('fl_recebido')->default(0);
             $table->unsignedInteger('user_id');
             $table->timestamps();

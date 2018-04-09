@@ -29,14 +29,20 @@ $(function() {
         return html;
     };
     
-    $(".rastrear-muamba").click(function() {
+    $(".rastrear-muamba, .historico-muamba").click(function() {
         var id = $(this).data('id');
         var codigoRastreio = $(this).data('codigo-rastreio');
         var token = $(this).data('token');
         var nome = $(this).data('nome');
+        var tipo = $(this).data('tipo');
+        var action = "rastrear_muambas";
+        
+        if ($.trim(tipo) == "historico") {
+            action = "historico_muambas";
+        }
 
         $.ajax({
-            url: CONTROLLER + 'rastrear_muambas',
+            url: CONTROLLER + action,
             type: 'POST',
             data: {
                 id: id,
@@ -55,6 +61,51 @@ $(function() {
             },
             complete: function () {
                 waitingDialog.hide();
+            }
+        });
+    });
+    
+    $(".confirmar-recebimento").click(function() {
+        var id = $(this).data('id');
+        var token = $(this).data('token');
+
+        swal({
+            title: "Confirma recebimento do produto?",
+            text: "Uma vez confirmado, você não poderá rastrea - lo novamente, somente visualizar o histórico!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: CONTROLLER + 'confirmar_recebimento',
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        _token: token
+                    },
+                    dataType: 'json',
+                    beforeSend: function () {
+                        waitingDialog.show('Aguarde...', {dialogSize: 'sm'});
+                    },
+                    success: function(data) {
+                        if (data) {
+                            swal("Confirmação realizada com sucesso!", {
+                                icon: "success",
+                            });
+                            
+                            $(this).remove();
+                        } else {
+                            swal("Erro ao realizar confirmação. Tente novamente!", {
+                                icon: "error",
+                            });   
+                        }
+                    },
+                    complete: function () {
+                        waitingDialog.hide();
+                    }
+                });
             }
         });
     });

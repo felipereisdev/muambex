@@ -26,33 +26,46 @@ $(function() {
         }
     });
 
-    $("#codigo_rastreio").change(function () {
+    $("#btn-salvar").click(function () {
         var campo = "codigo_rastreio";
-        var valor = $(this).val();
+        var valor = $("#codigo_rastreio").val();
         var token = $("[name='_token']").val();
         var id = $("[name='id']").val();
-
-        $.ajax({
-            url: CONTROLLER + 'ajax_verifica_duplicidade',
-            type: 'POST',
-            data: {
-                id: id,
-                campo: campo,
-                _token: token,
-                valor: valor,
-                model: "App\\Muamba"
-            },
-            beforeSend: function () {
-                waitingDialog.show('Aguarde...', {dialogSize: 'sm'});
-            },
-            success: function(data) {
-                if ($.trim(data) == "true") {
-                    swal("Aviso", "Código de rastreio já cadastrado");
-                    $("#" + campo).val("");
-                }
-            },
-            complete: function () {
-                waitingDialog.hide();
+        
+        swal({
+            title: "Deseja realmente salvar este produto?",
+            // text: "Uma vez confirmado, você não poderá rastrea - lo novamente, somente visualizar o histórico!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: CONTROLLER + 'ajax_verifica_duplicidade',
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        campo: campo,
+                        _token: token,
+                        valor: valor,
+                        model: "App\\Muamba"
+                    },
+                    beforeSend: function () {
+                        waitingDialog.show('Aguarde...', {dialogSize: 'sm'});
+                    },
+                    success: function(data) {
+                        if ($.trim(data) == "true") {
+                            swal("Aviso", "Código de rastreio já cadastrado");
+                            $("#" + campo).val("");
+                        } else {
+                            $("#form_muambas").submit();
+                        }
+                    },
+                    complete: function () {
+                        waitingDialog.hide();
+                    }
+                });
             }
         });
     });

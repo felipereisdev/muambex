@@ -70,14 +70,14 @@
                                             <td><?php echo e($muamba->nome); ?></td>
                                             <td><?php echo e($muamba->codigo_rastreio); ?></td>
                                             <td>
-                                                <button class="btn btn-sm btn-info rastrear-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Rastrear Muamba" data-nome="<?php echo e($muamba->nome); ?>" data-id="<?php echo e($muamba->id); ?>" data-codigo-rastreio="<?php echo e($muamba->codigo_rastreio); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-refresh"></i></button>
-
-                                                <?php echo e(link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top'])); ?>
-
 
                                                 <?php if(!$muamba->fl_recebido): ?>
-                                                    <?php echo e(link_to_route('muambas.confirmar_recebimento', '', [$muamba->id], ['class' => 'btn btn-sm btn-success glyphicon glyphicon-thumbs-up', 'title' => 'Confirmar Recebimento', 'data-toggle' => 'tooltip', 'data-placement' => 'top'])); ?>
+                                                    <?php echo e(link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top'])); ?>
 
+                                                    <button class="btn btn-sm btn-info rastrear-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Rastrear Muamba" data-tipo="rastrear" data-nome="<?php echo e($muamba->nome); ?>" data-id="<?php echo e($muamba->id); ?>" data-codigo-rastreio="<?php echo e($muamba->codigo_rastreio); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-refresh"></i></button>
+                                                    <button class="btn btn-sm btn-success confirmar-recebimento" style="margin-top: 3px;" data-toggle="tooltip" title="Confirmar Recebimento" data-placemen="top" data-id="<?php echo e($muamba->id); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-thumbs-up"></i></button>
+                                                <?php else: ?>
+                                                    <button class="btn btn-sm btn-info historico-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Histórico Muamba" data-tipo="historico" data-nome="<?php echo e($muamba->nome); ?>" data-id="<?php echo e($muamba->id); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-folder-open"></i></button>
                                                 <?php endif; ?>
                                             </td>
                                         </tr>

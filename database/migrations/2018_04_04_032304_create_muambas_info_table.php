@@ -14,10 +14,10 @@ class CreateMuambasInfoTable extends Migration
     {
         Schema::create('muambas_info', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('dh_evento');
-            $table->string('ds_local', 255);
-            $table->string('ds_status', 90);
-            $table->string('ds_encaminhado', 300);
+            $table->dateTime('data');
+            $table->string('local', 255);
+            $table->string('status', 90);
+            $table->string('encaminhado', 300)->nullable();
             $table->unsignedInteger('muambas_id');
             $table->timestamps();
             

@@ -66,12 +66,13 @@
                                             <td>{{ $muamba->nome }}</td>
                                             <td>{{ $muamba->codigo_rastreio }}</td>
                                             <td>
-                                                <button class="btn btn-sm btn-info rastrear-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Rastrear Muamba" data-nome="{{ $muamba->nome }}" data-id="{{ $muamba->id }}" data-codigo-rastreio="{{ $muamba->codigo_rastreio }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-refresh"></i></button>
-
-                                                {{ link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
 
                                                 @if (!$muamba->fl_recebido)
-                                                    {{ link_to_route('muambas.confirmar_recebimento', '', [$muamba->id], ['class' => 'btn btn-sm btn-success glyphicon glyphicon-thumbs-up', 'title' => 'Confirmar Recebimento', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
+                                                    {{ link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
+                                                    <button class="btn btn-sm btn-info rastrear-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Rastrear Muamba" data-tipo="rastrear" data-nome="{{ $muamba->nome }}" data-id="{{ $muamba->id }}" data-codigo-rastreio="{{ $muamba->codigo_rastreio }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-refresh"></i></button>
+                                                    <button class="btn btn-sm btn-success confirmar-recebimento" style="margin-top: 3px;" data-toggle="tooltip" title="Confirmar Recebimento" data-placemen="top" data-id="{{ $muamba->id }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-thumbs-up"></i></button>
+                                                @else
+                                                    <button class="btn btn-sm btn-info historico-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Histórico Muamba" data-tipo="historico" data-nome="{{ $muamba->nome }}" data-id="{{ $muamba->id }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-folder-open"></i></button>
                                                 @endif
                                             </td>
                                         </tr>

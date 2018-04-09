@@ -14,6 +14,7 @@
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 Route::get('/', 'MuambasController@index')->name('muambas.index');
+Route::get('/home', 'MuambasController@index')->name('muambas.index');
 
 
 Auth::routes();
