@@ -1,4 +1,4 @@
-# Muambex
+# Muambex Versão 1.0.0
 
 Projeto simples em laravel para rastreio de pacotes dos correios, busca de cep e mais...
 
@@ -22,6 +22,7 @@ Projeto simples em laravel para rastreio de pacotes dos correios, busca de cep e
 ### Pré-requisitos
 
 ```
+* Laravel
 * MySQL
 * Composer
 * Git
@@ -38,4 +39,4 @@ Projeto simples em laravel para rastreio de pacotes dos correios, busca de cep e
 
 ## Licença
 
-Este projeto está licenciado sob a MIT License - veja o [LICENSE.md](LICENSE.md) arquivo para detalhes
+Este projeto está licenciado a Copyright 2018 Felipe Alves Reis
