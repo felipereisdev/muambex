@@ -17,6 +17,12 @@ Projeto simples em laravel para rastreio de pacotes dos correios, busca de cep e
 
 4 - Criar e edit arquivo .env com as informações do seu banco de dados
 
+5 - php artisan key:generate
+
+6 - php artisan migrate
+
+Enjoy
+
 ```
 
 ### Pré-requisitos
