@@ -57,7 +57,7 @@
                             <thead>
                                 <th>Nome</th>
                                 <th>Cód Rastreio</th>
-                                <th style="width: 12%">Opções</th>
+                                <th style="width: 16%">Opções</th>
                             </thead>
                             @if (isset($muambas) && count($muambas) > 0)
                                 <tbody>
@@ -74,6 +74,8 @@
                                                 @else
                                                     <button class="btn btn-sm btn-info historico-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Histórico Muamba" data-tipo="historico" data-nome="{{ $muamba->nome }}" data-id="{{ $muamba->id }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-folder-open"></i></button>
                                                 @endif
+                                                
+                                                <button class="btn btn-sm btn-danger deletar-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Excluir Muamba" data-id="{{ $muamba->id }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach

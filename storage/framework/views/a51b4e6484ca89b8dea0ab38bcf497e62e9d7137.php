@@ -61,7 +61,7 @@
                             <thead>
                                 <th>Nome</th>
                                 <th>Cód Rastreio</th>
-                                <th style="width: 12%">Opções</th>
+                                <th style="width: 16%">Opções</th>
                             </thead>
                             <?php if(isset($muambas) && count($muambas) > 0): ?>
                                 <tbody>
@@ -79,6 +79,8 @@
                                                 <?php else: ?>
                                                     <button class="btn btn-sm btn-info historico-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Histórico Muamba" data-tipo="historico" data-nome="<?php echo e($muamba->nome); ?>" data-id="<?php echo e($muamba->id); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-folder-open"></i></button>
                                                 <?php endif; ?>
+                                                
+                                                <button class="btn btn-sm btn-danger deletar-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Excluir Muamba" data-id="<?php echo e($muamba->id); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-trash"></i></button>
                                             </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

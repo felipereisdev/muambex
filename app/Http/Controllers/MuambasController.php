@@ -9,6 +9,8 @@ use Correios;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 
 class MuambasController extends Controller
 {
@@ -49,14 +51,19 @@ class MuambasController extends Controller
         $muamba->nome = trim($request->nome);
         $muamba->codigo_rastreio = trim($request->codigo_rastreio);
         $muamba->user_id = $request->user_id;
-
-        if ($muamba->save()) {
-            Alert::success('Muamba cadastrada com sucesso', 'Uhuuuul!');
+        
+        if (Correios::rastrear($request->codigo_rastreio) != false) {
+            if ($muamba->save()) {
+                Alert::success('Muamba cadastrada com sucesso', 'Uhuuuul!');
+            } else {
+                Alert::error('Erro ao cadastrar muamba', 'Ooooops!');
+            }
+            
+            return redirect()->route('muambas.index');
         } else {
-            Alert::error('Erro ao cadastrar muamba', 'Ooooops!');
+            Alert::error('Código de rastreio inválido ou ainda não consta na base dos correios', 'Ooooops!');
+            return Redirect::back()->withInput(Input::all());
         }
-
-        return redirect()->route('muambas.index');
     }
 
 
@@ -135,6 +142,15 @@ class MuambasController extends Controller
             return json_encode(true);
         } catch(\Exception $e) {
             DB::rollBack();
+            return json_encode(false);
+        }
+    }
+    
+    public function delete(Request $request)
+    {
+        if (Muamba::destroy($request->id)) {
+            return json_encode(true);
+        } else {
             return json_encode(false);
         }
     }

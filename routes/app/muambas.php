@@ -10,6 +10,8 @@
     Route::get('/muambas/form_edit/{id}', 'MuambasController@form_edit')->name('muambas.form_edit');
     Route::post('/muambas/update', 'MuambasController@update')->name('muambas.update');
     
+    Route::post('/muambas/delete', 'MuambasController@delete')->name('muambas.delete');
+    
     Route::post('/muambas/ajax_verifica_duplicidade', 'MuambasController@ajax_verifica_duplicidade');
     Route::post('/muambas/rastrear_muambas', 'MuambasController@rastrear_muambas');
     Route::post('/muambas/historico_muambas', 'MuambasController@historico_muambas')->name('muambas.historico_muambas');

@@ -21,7 +21,7 @@ class CreateMuambasInfoTable extends Migration
             $table->unsignedInteger('muambas_id');
             $table->timestamps();
             
-            $table->foreign('muambas_id')->references('id')->on('muambas');
+            $table->foreign('muambas_id')->references('id')->on('muambas')->onDelete('cascade');;
         });
     }
     /**
