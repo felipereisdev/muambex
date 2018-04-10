@@ -28,20 +28,26 @@ Enjoy
 ### Pré-requisitos
 
 ```
-* Laravel
+* Laravel 5.5
 * MySQL
 * Composer
 * Git
+* Soap Client - sudo apt-get install php-soap
+* PHP >= 7.0
 ```
 
 ## Construído com:
 
-* [Laravel](https://laravel.com/docs/5.6) - Web framework
+* [Laravel](https://laravel.com/docs/5.5) - Web framework
 * [Composer](https://getcomposer.org/) - Gerenciamento de Dependência
 * [MySQL](https://www.mysql.com/) - Banco de Dados
 * [Jquery](https://jquery.com/) - Manipulação de Front
 * [jeroennoten/Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE) - Template
 * [jqueryvalidation](https://jqueryvalidation.org/) - Validação do form
+* [cagartner/correios-consulta](https://github.com/cagartner/correios-consulta) - Buscar informações de serviços dos correios
+* [Soap Client](http://php.net/manual/pt_BR/class.soapclient.php) - Necessário para utilizar a correios-consulta
+* [Laravel Collective](https://laravelcollective.com/docs/5.2/html) - Pacote Laravel Form para aumento da produtividade
+* [SweetAlert](https://github.com/uxweb/sweet-alert) - Torna as mensagens popup mais bonitas
 
 ## Autor
 
