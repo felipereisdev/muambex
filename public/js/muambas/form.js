@@ -34,9 +34,8 @@ $(function() {
         
         swal({
             title: "Deseja realmente salvar este produto?",
-            // text: "Uma vez confirmado, você não poderá rastrea - lo novamente, somente visualizar o histórico!",
             icon: "warning",
-            buttons: true,
+            buttons: ["Cancelar", "OK"],
             dangerMode: true,
         })
         .then((willDelete) => {

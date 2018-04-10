@@ -85,7 +85,7 @@ $(function() {
             title: "Confirma recebimento da muamba?",
             text: "Uma vez confirmado, você não poderá rastrea - la novamente, somente visualizar o histórico!",
             icon: "warning",
-            buttons: true,
+            buttons: ["Cancelar", "OK"],
             dangerMode: true,
         })
         .then((willDelete) => {
@@ -134,7 +134,7 @@ $(function() {
             title: "Deseja realmente excluir esta muamba?",
             text: "Uma vez confirmado, a muamba será excluída de forma definitiva!",
             icon: "warning",
-            buttons: true,
+            buttons: ["Cancelar", "OK"],
             dangerMode: true,
         })
         .then((willDelete) => {

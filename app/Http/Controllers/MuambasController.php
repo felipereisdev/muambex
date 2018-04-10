@@ -46,14 +46,9 @@ class MuambasController extends Controller
     }
 
     public function create(Request $request)
-    {
-        $muamba = new Muamba();
-        $muamba->nome = trim($request->nome);
-        $muamba->codigo_rastreio = trim($request->codigo_rastreio);
-        $muamba->user_id = $request->user_id;
-        
+    {    
         if (Correios::rastrear($request->codigo_rastreio) != false) {
-            if ($muamba->save()) {
+            if (Muamba::create(Input::all())) {
                 Alert::success('Muamba cadastrada com sucesso', 'Uhuuuul!');
             } else {
                 Alert::error('Erro ao cadastrar muamba', 'Ooooops!');
