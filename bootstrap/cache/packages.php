@@ -10,17 +10,6 @@
       'Defender' => 'Artesaos\\Defender\\Facades\\Defender',
     ),
   ),
-  'barryvdh/laravel-debugbar' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Barryvdh\\Debugbar\\ServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
-    ),
-  ),
   'cagartner/correios-consulta' => 
   array (
     'providers' => 

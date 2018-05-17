@@ -9,7 +9,7 @@
                 <div class="panel-body">
                     <div class="box-header">
                         <h3 class="box-title">Listagem de Muambas</h3>
-    
+
                         <div class="box-tools">
                             {{ link_to_route('muambas.form_add', 'Cadastrar', null, ['class' => 'btn btn-primary']) }}
                         </div>
@@ -31,7 +31,7 @@
                                             {{ Form::label('Nome:', null, ['class' => 'control-label']) }}
                                             {{ Form::text('nome', (isset($request->nome) && !empty($request->nome) ? $request->nome : ''), ['class' => 'form-control', 'id' => 'nome']) }}
                                         </div>
-                                        
+
                                         <div class="form-group col-md-3">
                                             {{ Form::label('Código Rastreio:', null, ['class' => 'control-label']) }}
                                             {{ Form::text('codigo_rastreio', (isset($request->codigo_rastreio) && !empty($request->codigo_rastreio) ? $request->codigo_rastreio : ''), ['class' => 'form-control', 'id' => 'codigo_rastreio']) }}
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                
+
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-striped">
                             <thead>
@@ -74,7 +74,7 @@
                                                 @else
                                                     <button class="btn btn-sm btn-info historico-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Histórico Muamba" data-tipo="historico" data-nome="{{ $muamba->nome }}" data-id="{{ $muamba->id }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-folder-open"></i></button>
                                                 @endif
-                                                
+
                                                 <button class="btn btn-sm btn-danger deletar-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Excluir Muamba" data-id="{{ $muamba->id }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-trash"></i></button>
                                             </td>
                                         </tr>
@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="modal-rastreio" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -110,7 +110,7 @@
                     <h4 class="modal-title" id="titulo-modal"></h4>
                 </div>
                 <div class="modal-body" id="div-modal-body">
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

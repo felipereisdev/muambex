@@ -7,7 +7,7 @@
                 <div class="panel-body">
                     <div class="box-header">
                         <h3 class="box-title">Listagem de Muambas</h3>
-    
+
                         <div class="box-tools">
                             <?php echo e(link_to_route('muambas.form_add', 'Cadastrar', null, ['class' => 'btn btn-primary'])); ?>
 
@@ -32,7 +32,7 @@
                                             <?php echo e(Form::text('nome', (isset($request->nome) && !empty($request->nome) ? $request->nome : ''), ['class' => 'form-control', 'id' => 'nome'])); ?>
 
                                         </div>
-                                        
+
                                         <div class="form-group col-md-3">
                                             <?php echo e(Form::label('Código Rastreio:', null, ['class' => 'control-label'])); ?>
 
@@ -55,13 +55,13 @@
                             </div>
                         </div>
                     </div>
-                
+
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-striped">
                             <thead>
                                 <th>Nome</th>
                                 <th>Cód Rastreio</th>
-                                <th style="width: 10%">Opções</th>
+                                <th style="width: 16%">Opções</th>
                             </thead>
                             <?php if(isset($muambas) && count($muambas) > 0): ?>
                                 <tbody>
@@ -70,15 +70,17 @@
                                             <td><?php echo e($muamba->nome); ?></td>
                                             <td><?php echo e($muamba->codigo_rastreio); ?></td>
                                             <td>
-                                                <button class="btn btn-sm btn-info rastrear-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Rastrear Muamba" data-id="<?php echo e($muamba->id); ?>" data-codigo-rastreio="<?php echo e($muamba->codigo_rastreio); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-refresh"></i></button>
-
-                                                <?php echo e(link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top'])); ?>
-
 
                                                 <?php if(!$muamba->fl_recebido): ?>
-                                                    <?php echo e(link_to_route('muambas.alterar_status', '', ['App\Muamba', $muamba->id, 1, 'muambas.index'], ['class' => 'btn btn-sm btn-success glyphicon glyphicon-thumbs-up', 'title' => 'Confirmar Recebimento', 'data-toggle' => 'tooltip', 'data-placement' => 'top'])); ?>
+                                                    <?php echo e(link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top'])); ?>
 
+                                                    <button class="btn btn-sm btn-info rastrear-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Rastrear Muamba" data-tipo="rastrear" data-nome="<?php echo e($muamba->nome); ?>" data-id="<?php echo e($muamba->id); ?>" data-codigo-rastreio="<?php echo e($muamba->codigo_rastreio); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-refresh"></i></button>
+                                                    <button class="btn btn-sm btn-success confirmar-recebimento" style="margin-top: 3px;" data-toggle="tooltip" title="Confirmar Recebimento" data-placemen="top" data-id="<?php echo e($muamba->id); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-thumbs-up"></i></button>
+                                                <?php else: ?>
+                                                    <button class="btn btn-sm btn-info historico-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Histórico Muamba" data-tipo="historico" data-nome="<?php echo e($muamba->nome); ?>" data-id="<?php echo e($muamba->id); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-folder-open"></i></button>
                                                 <?php endif; ?>
+
+                                                <button class="btn btn-sm btn-danger deletar-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Excluir Muamba" data-id="<?php echo e($muamba->id); ?>" data-token="<?php echo e(csrf_token()); ?>"><i class="glyphicon glyphicon-trash"></i></button>
                                             </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -105,6 +107,26 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal-rastreio" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="titulo-modal"></h4>
+                </div>
+                <div class="modal-body" id="div-modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('js'); ?>
