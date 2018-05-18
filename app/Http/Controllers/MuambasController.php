@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\Input;
 
 class MuambasController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index(Request $request)
     {
         $conditions = array();
@@ -38,14 +33,14 @@ class MuambasController extends Controller
         return view('muambas.index', compact('muambas','controller', 'request'));
     }
 
-    public function form_add()
+    public function create()
     {
         $content_header = "Cadastrar Muamba";
         $controller = "muambas";
         return view('muambas.form', compact('content_header', 'controller'));
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {    
         if (Correios::rastrear($request->codigo_rastreio) != false) {
             if (Muamba::create(Input::all())) {
@@ -62,7 +57,7 @@ class MuambasController extends Controller
     }
 
 
-    public function form_edit($id)
+    public function edit($id)
     {
         $content_header = "Alterar Muamba";
         $muamba = Muamba::where('id', $id)->first();
@@ -141,7 +136,7 @@ class MuambasController extends Controller
         }
     }
     
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
         if (Muamba::destroy($request->id)) {
             return json_encode(true);

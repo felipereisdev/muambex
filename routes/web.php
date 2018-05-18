@@ -13,24 +13,17 @@
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
-Route::get('/', 'MuambasController@index')->name('muambas.index');
-Route::get('/home', 'MuambasController@index')->name('muambas.index');
-
-
 Auth::routes();
 
-$rotas_pastas = [
-    'usuarios',
-    'muambas'
-];
+Route::middleware('auth')->group(function () {
+//    Route::get('/', 'MuambasController@index')->name('muambas.index');
+//    Route::get('/home', 'MuambasController@index')->name('muambas.index');
 
-foreach ($rotas_pastas as $rota) {
-    $file = __DIR__ . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . $rota . '.php';
+    Route::resource('usuarios', 'UsuariosController')->only([
+        'show', 'update'
+    ]);
 
-    if (!file_exists($file)) {
-        $msg = "Rota parcial {$rota} não encontrada";
-        throw new FileNotFoundException($msg);
-    }
-
-    require_once $file;
-}
+    Route::resource('muambas', 'MuambasController')->except([
+        'show'
+    ]);
+});

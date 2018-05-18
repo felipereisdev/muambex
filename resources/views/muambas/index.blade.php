@@ -11,7 +11,7 @@
                         <h3 class="box-title">Listagem de Muambas</h3>
 
                         <div class="box-tools">
-                            {{ link_to_route('muambas.form_add', 'Cadastrar', null, ['class' => 'btn btn-primary']) }}
+                            {{ link_to_route('muambas.create', 'Cadastrar', null, ['class' => 'btn btn-primary']) }}
                         </div>
                     </div>
                     <hr>
@@ -35,10 +35,6 @@
                                         <div class="form-group col-md-3">
                                             {{ Form::label('Código Rastreio:', null, ['class' => 'control-label']) }}
                                             {{ Form::text('codigo_rastreio', (isset($request->codigo_rastreio) && !empty($request->codigo_rastreio) ? $request->codigo_rastreio : ''), ['class' => 'form-control', 'id' => 'codigo_rastreio']) }}
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            {{-- {{ Form::label('Status:', null, ['class' => 'control-label']) }}
-                                            {{ Form::select('fl_ativo', [1 => 'Ativo', 0 => 'Inativo'], null, ['placeholder' => 'Selecione', 'class' => 'form-control', 'value' => (isset($request->fl_ativo) && !empty($request->fl_ativo) ? $request->fl_ativo : '')]) }} --}}
                                         </div>
                                     </div>
                                     <div class="btn-group">
@@ -68,7 +64,7 @@
                                             <td>
 
                                                 @if (!$muamba->fl_recebido)
-                                                    {{ link_to_route('muambas.form_edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
+                                                    {{ link_to_route('muambas.edit', '', [$muamba->id], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-edit', 'title' => 'Alterar', 'data-toggle' => 'tooltip', 'data-placement' => 'top']) }}
                                                     <button class="btn btn-sm btn-info rastrear-muamba" style="margin-top: 3px;" data-toggle="tooltip" title="Rastrear Muamba" data-tipo="rastrear" data-nome="{{ $muamba->nome }}" data-id="{{ $muamba->id }}" data-codigo-rastreio="{{ $muamba->codigo_rastreio }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-refresh"></i></button>
                                                     <button class="btn btn-sm btn-success confirmar-recebimento" style="margin-top: 3px;" data-toggle="tooltip" title="Confirmar Recebimento" data-placemen="top" data-id="{{ $muamba->id }}" data-token="{{ csrf_token() }}"><i class="glyphicon glyphicon-thumbs-up"></i></button>
                                                 @else

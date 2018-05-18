@@ -10,12 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UsuariosController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
-    public function form_edit()
+    public function edit()
     {
         $content_header = "Alterar Senha";
         $usuario = User::where('id', Auth::id())->first();
