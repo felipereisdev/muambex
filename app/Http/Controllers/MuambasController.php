@@ -110,10 +110,7 @@ class MuambasController extends Controller
             foreach($eventos as $key => $value) {
                 $muambaInfo = new MuambaInfo();
                 
-                // $data = new \DateTime($value['data']);
-                // $muambaInfo->data = $data->format("Y-m-d H:i:s");
                 $muambaInfo->data = $value['data'];
-                
                 $muambaInfo->local = $value['local'];
                 $muambaInfo->status = $value['status'];
                 

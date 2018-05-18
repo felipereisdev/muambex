@@ -4,42 +4,49 @@ $(function() {
         var valor = $("#codigo_rastreio").val();
         var token = $("[name='_token']").val();
         var id = $("[name='id']").val();
-
-        swal({
-            title: "Deseja realmente salvar este produto?",
-            icon: "warning",
-            buttons: ["Cancelar", "OK"],
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-            if (willDelete) {
-                $.ajax({
-                    url: CONTROLLER + 'ajax_verifica_duplicidade',
-                    type: 'POST',
-                    data: {
-                        id: id,
-                        campo: campo,
-                        _token: token,
-                        valor: valor,
-                        model: "App\\Muamba"
-                    },
-                    beforeSend: function () {
-                        waitingDialog.show('Aguarde...', {dialogSize: 'sm'});
-                    },
-                    success: function(data) {
-                        if ($.trim(data) == "true") {
-                            swal("Aviso", "Código de rastreio já cadastrado");
-                            $("#" + campo).val("");
-                        } else {
-                            $("#form_muambas").submit();
+        
+        if (valor != "") {
+            swal({
+                title: "Deseja realmente salvar este produto?",
+                icon: "warning",
+                buttons: ["Cancelar", "OK"],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: CONTROLLER + 'ajax_verifica_duplicidade',
+                        type: 'POST',
+                        data: {
+                            id: id,
+                            campo: campo,
+                            _token: token,
+                            valor: valor,
+                            model: "App\\Muamba"
+                        },
+                        beforeSend: function () {
+                            waitingDialog.show('Aguarde...', {dialogSize: 'sm'});
+                        },
+                        success: function(data) {
+                            if ($.trim(data) == "true") {
+                                swal("Aviso", "Código de rastreio já cadastrado");
+                                $("#" + campo).val("");
+                            } else {
+                                $("#form_muambas").submit();
+                            }
+                        },
+                        complete: function () {
+                            waitingDialog.hide();
+                        },
+                        error: function() {
+                            swal("Aviso", "Erro ao passar os parâmetros para a funcão");
                         }
-                    },
-                    complete: function () {
-                        waitingDialog.hide();
-                    }
-                });
-            }
-        });
+                    });
+                }
+            });   
+        } else {
+            $("#form_muambas").submit();
+        }
     });
 
     $("#form_muambas").validate({

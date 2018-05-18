@@ -5,7 +5,9 @@
         <div class="box-header with-border">
             <h3 class="box-title"><?php echo e($content_header); ?></h3>
         </div>
-        <?php echo e(Form::open(['route' => (isset($muamba->id) && !empty($muamba->id) ? 'muambas.update' : 'muambas.create'), 'id' => 'form_muambas'])); ?>
+        <?php echo e(Form::open(['route' => (isset($muamba->id) && !empty($muamba->id) ? array('muambas.update', $muamba->id) : 'muambas.store'), 'id' => 'form_muambas'])); ?>
+
+            <?php echo e(method_field('PUT')); ?>
 
             <div class="box-body">
                 <div class="form-group col-md-3">
@@ -26,7 +28,7 @@
             <div class="box-footer">
                 <input type="hidden" name="id" value="<?php echo e((isset($muamba->id) && !empty($muamba->id) ? $muamba->id : '')); ?>" />
                 <input type="hidden" name="user_id" value="<?php echo e(Auth::id()); ?>" />
-                <?php echo e(Form::button('Salvar', ['class' => 'btn btn-primary', 'id' => 'btn-salvar', 'type' => 'button'])); ?>
+                <?php echo Form::button('Salvar', ['class' => 'btn btn-primary', 'id' => 'btn-salvar', 'type' => 'button']); ?>
 
                 <?php echo e(link_to_route('muambas.index', 'Cancelar', null, ['class' => 'btn btn-warning'])); ?>
 

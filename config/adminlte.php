@@ -116,7 +116,7 @@ return [
         ],
         [
             'text' => 'Alterar Senha',
-            'url'  => '/usuarios/form_edit',
+            'url'  => '/usuarios/edit',
             'icon' => 'users',
         ],
         // [
