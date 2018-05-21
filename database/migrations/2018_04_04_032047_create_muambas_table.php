@@ -16,6 +16,7 @@ class CreateMuambasTable extends Migration
             $table->increments('id');
             $table->string('nome', 90);
             $table->string('codigo_rastreio', 30)->unique();
+            $table->string('ultimo_status', 255)->nullable();
             $table->tinyInteger('fl_recebido')->default(0);
             $table->unsignedInteger('user_id');
             $table->timestamps();

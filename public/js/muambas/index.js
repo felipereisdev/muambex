@@ -66,10 +66,16 @@ $(function() {
                 waitingDialog.show('Aguarde...', {dialogSize: 'sm'});
             },
             success: function(data) {
-                $("#div-modal-body").children().remove();
-                $("#div-modal-body").html(functionMontaHTML(data));
-                $("#titulo-modal").text("Infos da Muamba: " + nome);
-                $("#modal-rastreio").modal('show');
+                if (data.success) {
+                    swal("Erro ao rastrear muamba. Tente novamente!", {
+                        icon: "error",
+                    }); 
+                } else {
+                    $("#div-modal-body").children().remove();
+                    $("#div-modal-body").html(functionMontaHTML(data));
+                    $("#titulo-modal").text("Infos da Muamba: " + nome);
+                    $("#modal-rastreio").modal('show');   
+                }
             },
             complete: function () {
                 waitingDialog.hide();

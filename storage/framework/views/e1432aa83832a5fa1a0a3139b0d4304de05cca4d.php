@@ -7,7 +7,7 @@
         </div>
         <?php echo e(Form::open(['route' => (isset($muamba->id) && !empty($muamba->id) ? array('muambas.update', $muamba->id) : 'muambas.store'), 'id' => 'form_muambas'])); ?>
 
-            <?php echo e(method_field('PUT')); ?>
+            <?php echo e(method_field((isset($muamba->id) && !empty($muamba->id) ? 'PUT' : 'POST'))); ?>
 
             <div class="box-body">
                 <div class="form-group col-md-3">

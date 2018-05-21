@@ -70,7 +70,7 @@ class MuambasController extends Controller
         $muamba = Muamba::where('id', $request->id)->first();
         $muamba->nome = trim($request->nome);
         $muamba->codigo_rastreio = trim($request->codigo_rastreio);
-
+        
         if ($muamba->save()) {
             Alert::success('Muamba alterada com sucesso', 'Uhuuuul!');
         } else {
@@ -83,7 +83,15 @@ class MuambasController extends Controller
     public function rastrear_muambas(Request $request)
     {
         $eventos = Correios::rastrear($request->codigoRastreio);
-        return json_encode($eventos);
+
+        $muamba = Muamba::where('id', $request->id)->first();
+        $muamba->ultimo_status = $eventos[0]['status'];
+        
+        if (!$muamba->save()) {
+            return json_encode(array('success' => false));
+        } else {
+            return json_encode($eventos);   
+        }
     }
     
     public function historico_muambas(Request $request)
@@ -97,16 +105,10 @@ class MuambasController extends Controller
         DB::beginTransaction();
         
         try {
-            $muamba = Muamba::where('id', $request->id)->first();
-            $muamba->fl_recebido = 1;
-            
-            if (!$muamba->save()) {
-                throw new \Exception();
-            }
-            
             $eventos = Correios::rastrear($muamba->codigo_rastreio);
     
             $arrayMuambaInfo = array();
+            $ultimoStatus = "";
             foreach($eventos as $key => $value) {
                 $muambaInfo = new MuambaInfo();
                 
@@ -119,6 +121,18 @@ class MuambasController extends Controller
                 }
                 
                 $arrayMuambaInfo[] = $muambaInfo;
+                
+                if (!empty($ultimoStatus)) {
+                    $ultimoStatus = $value['status'];
+                }
+            }
+            
+            $muamba = Muamba::where('id', $request->id)->first();
+            $muamba->fl_recebido = 1;
+            $muamba->ultimo_status = $ultimoStatus;
+            
+            if (!$muamba->save()) {
+                throw new \Exception();
             }
     
             if (!$muamba->muamba_info()->saveMany($arrayMuambaInfo)) {

@@ -8,7 +8,7 @@
             <h3 class="box-title">{{ $content_header }}</h3>
         </div>
         {{ Form::open(['route' => (isset($muamba->id) && !empty($muamba->id) ? array('muambas.update', $muamba->id) : 'muambas.store'), 'id' => 'form_muambas']) }}
-            {{ method_field('PUT') }}
+            {{ method_field((isset($muamba->id) && !empty($muamba->id) ? 'PUT' : 'POST')) }}
             <div class="box-body">
                 <div class="form-group col-md-3">
                     {{ Form::label('Nome:', null, ['class' => 'control-label']) }}
